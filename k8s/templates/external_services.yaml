@@ -1,0 +1,39 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: drone
+spec:
+  type: ExternalName
+  externalName: drone-server-service.drone-ci.svc.cluster.local
+  ports:
+  - port: 80
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: grafana
+spec:
+  type: ExternalName
+  externalName: loki-grafana.monitoring.svc.cluster.local
+  ports:
+  - port: 80
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: gitea
+spec:
+  type: ExternalName
+  externalName: gitea-http.gitea.svc.cluster.local
+  ports:
+  - port: 80
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: echo2
+spec:
+  type: ExternalName
+  externalName: echo2.echo2-namespace.svc.cluster.local
+  ports:
+  - port: 80

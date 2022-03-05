@@ -1,0 +1,96 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: drone
+spec:
+  type: ExternalName
+  externalName: drone-server-service.drone-ci.svc.cluster.local
+  ports:
+  - port: 80
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: grafana
+spec:
+  type: ExternalName
+  externalName: loki-grafana.monitoring.svc.cluster.local
+  ports:
+  - port: 80
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: gitea
+spec:
+  type: ExternalName
+  externalName: gitea-http.gitea.svc.cluster.local
+  ports:
+  - port: 80
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: echo2
+spec:
+  type: ExternalName
+  externalName: echo2.echo2-namespace.svc.cluster.local
+  ports:
+  - port: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: echo-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: drone.darklab.dedyn.io
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: drone
+            port:
+              number: 80
+  - host: gitea.darklab.dedyn.io
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: gitea
+            port:
+              number: 80
+  - host: grafana.darklab.dedyn.io
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: grafana
+            port:
+              number: 80
+  - host: darklab.dedyn.io
+    http:
+      paths:
+      - path: /echo1
+        pathType: Prefix
+        backend:
+          service:
+            name: echo1
+            port:
+              number: 80
+      - path: /echo2
+        pathType: Prefix
+        backend:
+          service:
+            name: echo2
+            port:
+              number: 80
