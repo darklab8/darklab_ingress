@@ -2,7 +2,7 @@ install_metallb_dep:
 	helm repo add metallb https://metallb.github.io/metallb
 	
 install_metallb:
-	helm install metallb metallb/metallb -f metallb_values.yaml
+	helm install metallb metallb/metallb --namespace ingress-rules -f metallb_values.yaml
 
 
 install_cert_dep:
