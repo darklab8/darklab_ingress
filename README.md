@@ -4,7 +4,7 @@ I am deploying in baremetall microk8s
 ### (Skip if you have loadbalancers in your managed k8s, it is needed only for baremetal k8s)
 
 * make install_metallb_dep
-* makeinstall_metallb
+* make install_metallb
 
 # Deploying cert-manager lets encrypt
 
