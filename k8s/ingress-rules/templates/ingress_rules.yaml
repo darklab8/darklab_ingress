@@ -57,10 +57,3 @@ spec:
             name: echo1
             port:
               number: 80
-      - path: /echo2
-        pathType: Prefix
-        backend:
-          service:
-            name: echo2
-            port:
-              number: 80

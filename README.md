@@ -1,23 +1,13 @@
-I am deploying in baremetall microk8s
+# description
 
-# Deploying MetalLB 
-### (Skip if you have loadbalancers in your managed k8s, it is needed only for baremetal k8s)
+exposing multiple k8s resources in one multi domain/subpath entrance from 80/443 ports
 
-* make install_metallb_dep
-* make install_metallb
+# features
 
-# Deploying cert-manager lets encrypt
+* ingress-nginx
+* with metallb to work in microk8s
+* letsencrypt for free ssl certificates
+* and external services, to expose k8s objects from other namespaces
 
-* make install_cert_dep
-* make install_cert1
-* make install_cert2
-
-# Deploying ingress
-
-* make install_ingress_dep1
-* make install_ingress_dep2
-* make install_ingress
-
-### warning, my ingress exposes multiple services of my homelab, which you probably don't have
----
-### warning #2, perhaps MetalLB probably deployed into specifically named namespace for this, I did not specify it in makefile
+# instruction
+python3 install.py --ip="ipv4_address"

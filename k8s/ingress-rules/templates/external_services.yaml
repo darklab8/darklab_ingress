@@ -28,13 +28,3 @@ spec:
   ports:
   - port: 80
     targetPort: 3000
----
-kind: Service
-apiVersion: v1
-metadata:
-  name: echo2
-spec:
-  type: ExternalName
-  externalName: echo2.echo2-namespace.svc.cluster.local
-  ports:
-  - port: 80
